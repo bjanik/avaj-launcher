@@ -2,7 +2,7 @@
 
 public class WeatherProvider {
 
-	private WeatherProvider weatherProvider = new WeatherProvider();
+	private static WeatherProvider weatherProvider = new WeatherProvider();
 	private static String[] weather = {
 		"FOG",
 		"RAIN",
