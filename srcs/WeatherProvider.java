@@ -11,7 +11,7 @@ public class WeatherProvider {
 	};
 
 	public WeatherProvider() {
-
+		
 	}
 
 	public static WeatherProvider getProvider() {
