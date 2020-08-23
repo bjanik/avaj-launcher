@@ -1,22 +1,22 @@
-import java.utils.List;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Tower {
 	
 	private List<Flyable> observers = new ArrayList<Flyable>();
 
 	public void register(Flyable flyable) {
-		this.observers.add(flyable);
-		System.out.println("Tower says: " + flyable.getClass().getName() + "#" + flyable.name + "(" + flyable.id + ") registered to weather tower.");
+		if (this.observers.contains(flyable) == false)
+			this.observers.add(flyable);
 	}
 
 	public void unregister(Flyable flyable) {
 		this.observers.remove(flyable);
-		System.out.println("Tower says: " + flyable.getClass().getName() + "#" + flyable.name + "(" + flyable.id + ") unregistered to weather tower.");
 	}
 
 	protected void conditionsChanged() {
 		for (Flyable obs: observers) {
-			obs.updateCondtions();
+			obs.updateConditions();
 		}
 	}
 }

@@ -1,14 +1,12 @@
-
+import java.util.HashMap;
 
 public class Aircraft {
 
 	private static long idCounter = 0;
-
 	protected long id;
 	protected String name;
 	protected Coordinates coordinates;
-	protected Map weatherMap<String, String> = new HashMap<String, String>();
-
+	protected HashMap<String, String> weatherMap = new HashMap<String, String>();
 
 	protected Aircraft(String name, Coordinates coordinates) {
 		this.name = name;
@@ -23,5 +21,6 @@ public class Aircraft {
 
 	protected void land(){
 		System.out.println(this.getClass().getName() + "#" + this.name + "(" + this.id + ") landing.");
+		System.out.println("Tower says: " + this.getClass().getName() + "#" + this.name + "(" + this.id + ") unregistered to weather tower.");
 	}
 }

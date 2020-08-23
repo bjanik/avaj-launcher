@@ -6,11 +6,11 @@ public class Helicopter extends Aircraft implements Flyable {
 	private WeatherTower weatherTower;
 
 	public Helicopter(String name, Coordinates coordinates){
-		this.super(name, coordinates);
-		this.weatherTower.put("FOG", "Holy crap I can't see anything!");
-		this.weatherTower.put("RAIN", "Damn it! Forgot my umbrella!");
-		this.weatherTower.put("SNOW", "I'm freezing like dull boy Jack!");
-		this.weatherTower.put("SUN", "It's getting hot in here!");
+		super(name, coordinates);
+		this.weatherMap.put("FOG", "Holy crap I can't see anything!");
+		this.weatherMap.put("RAIN", "Damn it! Forgot my umbrella!");
+		this.weatherMap.put("SNOW", "I'm freezing like dull boy Jack!");
+		this.weatherMap.put("SUN", "It's getting hot in this Helicopter!");
 	}
 
 	public void updateConditions() {
@@ -31,16 +31,18 @@ public class Helicopter extends Aircraft implements Flyable {
 				this.coordinates.setHeight(this.coordinates.getHeight() + 2);
 				break;
 		}
-		// Need landing if height is 0
+		if (this.coordinates.getHeight() == 0)
+			this.land();
+	}
+
+	public void land() {
+		super.land();
+		this.weatherTower.unregister(this);
 	}
 
 	public void registerTower(WeatherTower weatherTower) {
 		this.weatherTower = weatherTower;
 		this.weatherTower.register(this);
-	}
-
-	protected void land() {
-		this.super();
-		this.weatherTower.unregister(this);
+		System.out.println("Tower says: " + this.getClass().getName() + "#" + this.name + "(" + this.id + ") registered to weather tower.");
 	}
 }

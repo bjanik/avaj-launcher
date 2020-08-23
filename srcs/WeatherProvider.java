@@ -10,18 +10,17 @@ public class WeatherProvider {
 		"SUN",
 	};
 
-	public WeatherProvider() {
-		
+	private WeatherProvider() {
 	}
 
 	public static WeatherProvider getProvider() {
-		return this.weatherProvider;
+		return WeatherProvider.weatherProvider;
 	}
 
 	public String getCurrentWeather(Coordinates coordinates) {
 		int index;
 
 		index = (coordinates.getLatitude() + coordinates.getLongitude() + coordinates.getHeight()) % 4;
-		return weather[index]; 
+		return this.weather[index];
 	}
 }

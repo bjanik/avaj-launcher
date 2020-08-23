@@ -7,18 +7,8 @@ public class Coordinates {
 	private int height;
 
 	public Coordinates(int longitude, int latitude, int height) {
-		try {
-			if (longitude < 0)
-			throw new IrregularCoordinatesException();
-			if (latitude < 0)
-				throw new IrregularCoordinatesException();
-			if (height < 0 || height > 100)
-				throw new IrregularCoordinatesException();
-		} catch (IrregularCoordinatesException ice)
-		{
+		if (longitude < 0 || latitude < 0 || height < 0)
 			System.exit(1);
-		}
-		
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.height = height;
@@ -30,11 +20,11 @@ public class Coordinates {
 
 	public int getHeight() { return this.height; }
 
-	public int setLongitude(int newLongtitude) {this.longitude = newLongtitude; }
+	public void setLongitude(int newLongtitude) {this.longitude = newLongtitude; }
 
-	public int setLatitude(int newLatitude) { this.latitude = newLatitude; }
+	public void setLatitude(int newLatitude) { this.latitude = newLatitude; }
 
-	public int setHeight(int newHeight) {
+	public void setHeight(int newHeight) {
 		if (newHeight < 0)
 			newHeight = 0;
 		if (newHeight > 100)
