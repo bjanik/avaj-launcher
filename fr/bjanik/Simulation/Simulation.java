@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-
 public class Simulation {
 
 	public static PrintWriter writer;
@@ -46,13 +45,6 @@ public class Simulation {
 		return flyableList;
 	}
 
-	public static void runSimulation(ArrayList<Flyable> flyableList)
-	{
-		for (int i = 0; i < flyableList.size(); i++){
-			flyableList.get(i).updateConditions();
-		}
-	}
-
 	public static void main(String[] args) {
 		if (args.length < 1)
 			return;
@@ -62,13 +54,12 @@ public class Simulation {
 			writer = new PrintWriter(simulation);
 			FileReader fileReader = new FileReader(args[0]);
 			BufferedReader buffer = new BufferedReader(fileReader);
-			String line = buffer.readLine(); // First Line should an integer
+			String line = buffer.readLine();
 			int simulationRounds = Integer.parseInt(line);
 			if (simulationRounds < 0)
 			{
 				System.out.println("Number of simulations must be a positive integer");
 				System.exit(1);
-
 			}
 			ArrayList<Flyable> flyableList = readScenario(buffer);
 			WeatherTower weatherTower = new WeatherTower();
