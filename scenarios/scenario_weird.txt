@@ -1,0 +1,7 @@
+42
+Baloon B1 0 0 0
+Helicopter H1 0 0 0
+JetPlane J1 0 0 0
+Baloon B2 0 0 0
+Baloon B3 0 0 0
+Baloon B4 0 0 0
