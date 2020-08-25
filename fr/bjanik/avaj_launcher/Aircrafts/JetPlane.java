@@ -13,7 +13,7 @@ public class JetPlane extends Aircraft implements Flyable {
 		this.weatherMap.put("FOG", "Holy crap I can't see anything!");
 		this.weatherMap.put("RAIN", "Damn it! Forgot my umbrella!");
 		this.weatherMap.put("SNOW", "I'm freezing like dull boy Jack!");
-		this.weatherMap.put("SUN", "It's getting hot in this jet");
+		this.weatherMap.put("SUN", "It's getting hot in this jet!");
 	}
 
 	public void updateConditions() {

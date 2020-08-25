@@ -34,7 +34,14 @@ public class Simulation {
 		 		longitude = Integer.parseInt(strArray[2]);
 		 		latitude = Integer.parseInt(strArray[3]);
 		 		height = Integer.parseInt(strArray[4]);
-		 		flyableList.add(factory.newAircraft(strArray[0], strArray[1], longitude, latitude, height));
+		 		Flyable aircraft = factory.newAircraft(strArray[0], strArray[1], longitude, latitude, height);
+		 		if (aircraft != null)
+		 			flyableList.add(aircraft);
+		 		else
+		 		{
+		 			System.out.println("Unknown type of aircraft, aborting simulation");
+		 			System.exit(1);
+		 		}
 			}
 		} catch (IOException ioe){
 			System.exit(1);
@@ -50,7 +57,12 @@ public class Simulation {
 			return;
 		
 		try {
-			File simulation = new File("./simulation.txt");
+			File simulation = new File("simulation.txt");
+			if (simulation.isDirectory())
+			{
+				System.out.println("Cannot log to a directory, aborting simualtion");
+				System.exit(1);
+			}
 			writer = new PrintWriter(simulation);
 			FileReader fileReader = new FileReader(args[0]);
 			BufferedReader buffer = new BufferedReader(fileReader);
@@ -63,9 +75,9 @@ public class Simulation {
 			}
 			ArrayList<Flyable> flyableList = readScenario(buffer);
 			WeatherTower weatherTower = new WeatherTower();
-			for (int i = 0; i < flyableList.size(); i++) {
+			// WeatherTower weatherTower2 = new WeatherTower();
+			for (int i = 0; i < flyableList.size(); i++)
 				flyableList.get(i).registerTower(weatherTower);
-			}
 			while (simulationRounds > 0){
 				weatherTower.changeWeather();
 				simulationRounds--;
@@ -73,7 +85,7 @@ public class Simulation {
 			writer.close();
 			buffer.close();
 		} catch (NumberFormatException nfe){
-			System.out.println("Bad file formatting, aborting simulation");
+			System.out.println("First line must be a positive integer, aborting simulation");
 			System.exit(1);
 		} catch (IOException ioe){
 			System.exit(1);

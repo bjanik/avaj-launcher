@@ -8,7 +8,10 @@ public class Coordinates {
 
 	public Coordinates(int longitude, int latitude, int height) {
 		if (longitude < 0 || latitude < 0 || height < 0)
+		{
+			System.out.println("Coordinates must be positive, aborting simulation");
 			System.exit(1);
+		}
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.height = height;
